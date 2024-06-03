@@ -13,3 +13,11 @@ after_success:
   - docker build -t vspatariu/multi-nginx ./nginx
   - docker build -t vspatariu/multi-server ./server
   - docker build -t vspatariu/multi-worker ./worker
+
+# Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# Take those images and push them to docker hub
+  - docker push vspatariu/multi-client
+  - docker push vspatariu/multi-nginx
+  - docker push vspatariu/multi-server
+  - docker push vspatariu/multi-worker
